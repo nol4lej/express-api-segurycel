@@ -15,9 +15,10 @@ app.use(express.json()); // este middleware analizará automáticamente el cuerp
 
 app.get('/login', async (req, res) => {
   try {
+    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+    res.setHeader('Content-Type', 'application/json');
 
     const userData = req.body
-
     console.log({userData})
 
     // Realiza una solicitud a la API OAuth para obtener el token
